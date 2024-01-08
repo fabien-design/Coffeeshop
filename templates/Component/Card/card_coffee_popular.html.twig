@@ -1,0 +1,61 @@
+<div class="coffeeDiv">
+    <div class="infosCoffeeTop">
+        <div class="coffeeNote">
+            <p>{{ note }}/20</p>
+        </div>
+        <img
+        src="{{ asset('resources/assets/coffee.png') }}"
+        alt="coffee picture"
+        />
+        {% if bestSeller is same as(true) %}
+        <div class="popularityContainer">
+            <div class="fire">
+                <div class="fire-left">
+                    <div class="main-fire"></div>
+                    <div class="particle-fire"></div>
+                </div>
+                <div class="fire-center">
+                    <div class="main-fire"></div>
+                    <div class="particle-fire"></div>
+                </div>
+                <div class="fire-right">
+                    <div class="main-fire"></div>
+                    <div class="particle-fire"></div>
+                </div>
+                <div class="fire-bottom">
+                    <div class="main-fire"></div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    <div class="infosCoffeeBottom">
+        <h2 class="titleCoffee">{{ name }}</h2>
+        <div class="descriptionCoffee">
+            <div class="descriptionleft">
+                <div class="countryCoffee infoCoffee">
+                    <p class="title">Country :</p>
+                    <p>{{ country }}</p>
+                </div>
+                <div class="familyCoffee infoCoffee">
+                    <p class="title">Family :</p>
+                    <p>{{ family }}</p>
+                </div>
+            </div>
+             <div class="descriptionright">
+                <div class="brandCoffee infoCoffee">
+                    <p class="title">Brand :</p>
+                    <p>{{ brand }}</p>
+                </div>
+                <div class="categoryCoffee infoCoffee">
+                    <p class="title">Category :</p>
+                    <p>{{ category }}</p>
+                </div>
+             </div>
+        </div>
+        <div class="priceCoffee">
+            <p>{{ price }} <span>$</span></p>
+            <button>Add to cart</button>
+        </div>
+    </div>
+</div>

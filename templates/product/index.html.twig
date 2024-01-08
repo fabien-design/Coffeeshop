@@ -1,0 +1,117 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}All Products{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('resources/css/products.css') }}" />
+{% endblock %}
+
+{% block body %}
+<section class="allProducts" id="allProducts">
+    <div class="titleAndFilter">
+        <h2 class="titleSection">All Products</h2>
+        <div class="filterContainer">
+            <button id="filterButton">Filtrer</button>
+            <div id="filterPopup" class="filter-popup" style="display:none;">
+                <form method="get" action="{{ path('productsFilters') }}">
+                    <div class="arrowFilterOpen" id="arrowFilterOpen"></div>
+                    <label>Catégorie:
+                        <select id="categoryFilter" name="categorie">
+                        <option value="aucun">Aucun</option>
+                        {% for categ in listCategories %}
+                            <option value="{{ categ.getId }}">{{ categ.getName }} </option>
+                        {% endfor %} 
+                        </select>
+                    </label>
+
+                    <label>Brand:
+                        <select id="brandFilter" name="brand">
+                            <option value="aucun">Aucun</option>
+                            {% for brand in listBrand %}
+                            <option value="{{ brand.getId }}">{{ brand.getName }} </option>
+                            {% endfor %}
+                        </select>
+                    </label>
+                    <label>Family:
+                        <select id="familyFilter" name="family">
+                            <option value="aucun">Aucun</option>
+                            {% for family in listFamily %}
+                            <option value="{{ family.getId }}">{{ family.getName }} </option>
+                            {% endfor %}
+                        </select>
+                    </label>
+
+                    <button id="applyFilterButton">Apply</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="productsContainer">
+        {% for coffee in listCoffee %}  
+            {% include 'Component/Card/card_coffee_popular.html.twig' with{ 
+                'price' : coffee.getPrice,
+                'note'  : coffee.getNote,
+                'name'  : coffee.getName,
+                'country' : coffee.getCountry,
+                'family'  : coffee.family.name,
+                'brand'   : coffee.brand.name,
+                'category': coffee.category.name,
+                'bestSeller': coffee.getBestSeller
+                
+            } only %}      
+
+        {% endfor %}
+      
+    </div>
+    <div class="paginationContainer">
+        {% set PageGetter = app.request.get('page') %}
+        {% set currentQueryParams = app.request.query.all() %}
+        {% if currentQueryParams.page is defined %}
+            {% set currentQueryParams = currentQueryParams | filter((v, k) => k != 'page') %}
+        {% endif %}
+        {% set paginationRendering = paginationPages > 3 ? 3 : paginationPages %}
+        {% for i in range(1,paginationRendering) %}
+                {% set pageUrl = app.request.attributes.get('_route') == 'productsFilters' 
+                    ? path('productsFilters', currentQueryParams|merge({'page': i}))
+                    : path('app_products', currentQueryParams|merge({'page': i}))
+                %}
+
+                <a {% if currentPage != i %}href="{{ pageUrl }}"{% endif %} class="pagination {{ currentPage == i ? 'active' }}">{{ i }}</a>
+                
+        {% endfor %}
+        {% if paginationPages > 3 %}
+            {% set pageUrl = app.request.attributes.get('_route') == 'productsFilters' 
+                ? path('productsFilters', currentQueryParams|merge({'page': paginationPages}))
+                : path('app_products', currentQueryParams|merge({'page': paginationPages}))
+            %}
+            <a {% if currentPage != paginationPages %}href="{{ pageUrl }}"{% endif %} class="pagination {{ currentPage == paginationPages ? 'active' }}">{{ paginationPages }}</a>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
+
+{% block bottomJS %}
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var filterButton = document.getElementById("filterButton");
+    var filterPopup = document.getElementById("filterPopup");
+    var applyFilterButton = document.getElementById("applyFilterButton");
+
+    filterButton.addEventListener("click", function() {
+      // Afficher ou masquer la "popup" en fonction de son état actuel
+      filterPopup.style.display = filterPopup.style.display === "none" ? "grid" : "none";
+      filterButton.classList.toggle('open');
+    });
+
+    applyFilterButton.addEventListener("click", function() {
+      // Vous pouvez ajouter ici la logique pour appliquer le filtre
+      // (par exemple, récupérer les valeurs sélectionnées des sélecteurs)
+      
+      // Dans cet exemple, nous masquons simplement la "popup"
+      filterPopup.style.display = "none";
+    });
+});
+</script>
+{% endblock %}
+

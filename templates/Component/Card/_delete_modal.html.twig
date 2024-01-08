@@ -1,0 +1,28 @@
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+      
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">{{title}}</h4>
+          <button type="button" class="close" data-dismiss="modal" onclick="closeModal()">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          {{sentence}}
+        </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" onclick="closeModal()">Close</button>
+          <a class="btn btn-danger" id="pathToDelete" href="{{path_delete}}">Delete</a>
+        </div>
+      </div>
+    </div>
+</div>
+<script>
+function closeModal(){
+    $('#myModal').addClass('hide');
+    $('#myModal').removeClass('show');
+}
+</script>

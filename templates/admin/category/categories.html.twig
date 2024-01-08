@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %} 
+{% block title %}Coffeera{% endblock %}
+{% block stylesheets %}
+<link
+  type="text/css"
+  rel="stylesheet"
+  href="{{ asset('resources/css/lightslider.css') }}"
+/>
+
+<link rel="stylesheet" href="{{ asset('resources/css/base.css') }}" />
+<link rel="stylesheet" href="{{ asset('resources/css/admin/admin.css') }}" />
+{% endblock %}
+
+
+{% block headerBody %}
+{% include 'admin/includes/sideBar.html.twig' %}
+{% endblock %}
+{% block body %}
+{% include 'Component/Card/_delete_modal.html.twig' with{ 
+    'title' : "Delete brand",
+    'sentence'  : "Do you really want to delete these records? This process cannot be undone.",
+    'path_delete'  : "", 
+} only %}  
+<main>
+    {% for message in app.flashes('error') %}
+        <div class="notification-box flex flex-col items-center justify-center fixed w-full z-50 p-3">
+            <p>{{message}}</p>
+        </div>
+
+    {% endfor %}
+    
+    <div class="btnAddDiv"><a href="{{path('admin_categories_create')}}" class="btnAdd">Add</a></div>
+    <table>
+    <caption>Categories List</caption>
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Number of cafes</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% set i = 0 %}
+        {% for categ in listCateg %}
+
+            {% if i is same as(0) %}
+                <tr>
+                    <td data-label="Name">{{categ.getName}}</td>
+                    <td data-label="Number of cafes">{{categ.getProducts|length}}</td> 
+                    <td data-label="Actions" class="tdAction">
+                        <div class="divBtnAction">
+                            <a href="{{path('admin_categories_edit', {'id': categ.getId})}}" class="btnEdit">Edit</a>
+                            {% if categ.getProducts|length == 0 %}
+                                <button data-path="{{ path('admin_categories_delete', {'id': categ.getId}) }}" class="btnDelete">Delete</button>
+                            {% endif %}
+                        </div>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td scope="row" data-label="Name">{{categ.getName}}</td>
+                    <td data-label="Number of cafes">{{categ.getProducts|length}}</td>
+                    <td data-label="Actions" class="tdAction">
+                        <div class="divBtnAction">
+                            <a href="{{path('admin_categories_edit', {'id': categ.getId})}}" class="btnEdit">Edit</a>
+                            {% if categ.getProducts|length == 0 %}
+                                <button data-path="{{ path('admin_categories_delete', {'id': categ.getId}) }}" class="btnDelete">Delete</button>
+                            {% endif %}
+                        </div>
+                    </td> 
+                </tr>
+            {% endif %}
+            {% set i = i + 1 %}
+        {% endfor %}
+    
+    </tbody>
+    </table>
+</main>
+<script>
+    $(document).ready(function () {
+        // Gestionnaire de clic pour les boutons de suppression
+        $('.btnDelete').on('click', function () {
+            // Récupérer les données du bouton cliqué
+            var pathDelete = $(this).data('path');
+            $('#pathToDelete').attr('href', pathDelete);
+            $('#myModal').addClass('show');
+        });
+    });
+
+</script>
+{% endblock %}
+
+{% block footer %}
+    
+{% endblock %}
+{% block contactForm %}
+{% endblock %}

@@ -1,0 +1,335 @@
+.titleSection {
+    font-size: 40px;
+    font-family: var(--font-Rancho);
+    padding-bottom: 40px;
+}
+
+.sliderSection {
+    height: 100vh;
+    background-color: #fff;
+    background-image: url("../assets/coffee-shop-background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.slider {
+	position: relative;
+	height: 100%;
+	width: 100%;
+	overflow:hidden;
+}
+.slider-content {
+	position: relative;		
+	width: 100%;
+	height: 100%;
+}
+
+.slider-content-wrapper {
+	display: flex;
+	height:100%;
+	transition: transform 0.5s ease-in-out;
+}
+
+.slider-content__item {
+	flex: 1 0 100%;
+	width: 100%;
+	height: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+	font-size: 100px;
+	color: rgba(255, 255, 255, 1);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    background-color: #00000052;
+}
+.slider-content__item div{
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+}
+.slider-content__item div h2{
+	font-size: 22px;
+}
+
+.slider-content__item div p{
+	font-size: 18px;
+}
+
+.slider-content__item div .buttonSlider{
+    font-size: 16px;
+    padding: 10px 20px;
+    color: white;
+    background-color: green;
+    cursor: pointer;
+}
+
+/* Блок с контролами */
+.slider-controls {
+	padding:20px;
+	text-align: center;
+}
+
+/* Блок с контролами внутри окна */
+.slider-content__controls {
+	position:absolute;
+	top:0;left:0;
+	width: 100%;
+	height: 100%;
+	z-index:1;
+	/*transform: translateY(-50%);*/
+	/*padding:0 15px;*/
+}
+
+/* Arrows */
+.prev-arrow, .next-arrow {
+	position:absolute;
+	top:50%;
+	transform: translateY(-50%);
+	cursor: pointer;
+	color:rgb(255, 255, 255);
+	width: 20px;
+	transition: all 0.3s;
+}
+.prev-arrow {left: 20px;}
+.next-arrow {right: 20px;}
+
+.prev-arrow:hover,
+.next-arrow:hover {
+	cursor: pointer;
+	color:rgba(255, 255, 255, 0.7);
+}
+
+/* Dots */
+.dots {
+	position:absolute;
+	display: flex;
+	left:50%;
+	transform: translateX(-50%);
+	bottom:10%;
+}
+
+.dot {
+	cursor: pointer;
+	width: 8px;
+	height: 8px;
+	margin-right: 4px;
+	background-color: rgb(0, 0, 0);
+	/*box-shadow: 0 0 5px 0px rgba(0,0,0,0.9);*/
+	border-radius: 50%;
+	transition:all 0.3s;
+}
+
+.dot:last-child {margin-right: 0;}
+.dot:hover {background-color: #fff;}
+.dot--active {background-color: rgb(255, 255, 255);}
+
+/* Buttons */
+button {
+	cursor: pointer;
+	margin-right: 8px;
+	border:none;
+	border-radius: 4px;
+	padding:10px;
+	background-color: #3066BE;
+	color:#FFF;
+	transition: all 0.5s;
+}
+button:last-child {margin-right: 0;}
+button:hover {background-color: #60AFFF;}
+button:focus {outline: none;}
+
+/* Mods */
+.disabled {
+	background-color: #DCCFCF;
+	color:#B0A8A8;
+	cursor: default;
+	pointer-events:none;
+}
+
+.d-none {display: none;}
+.active {opacity: 1;}
+.centered {
+	position:relative;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);	
+}
+
+.popularProductSection {
+    background-color: #eceae3;
+    padding: 100px 10% 40px 10%;
+}
+
+.popularProductSection .titleAndButtonPopularProduct {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 40px;
+}
+.titleAndButtonPopularProduct .titleSection{
+    padding-bottom: 0 !important;
+}
+
+.popularProductSection .titleAndButtonPopularProduct .seeAllCoffee {
+    color: white;
+    font-family: var(--font-Rancho);
+    font-size: 30px;
+    padding: 5px 20px;
+    border-radius: 5px;
+    background-color: brown;
+    border: 2px solid brown;
+}
+
+.popularProductSection .titleAndButtonPopularProduct .seeAllCoffee:hover {
+    cursor: pointer;
+    color: brown;
+    background-color: white;
+    transition: all .3s ease;
+
+}
+
+.popularProductSection .coffeesContainer {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#aboutUsSection {
+    height: 100vh;
+    padding: 100px 10% 0 10%;
+
+}
+
+#aboutUsSection .topContainer {
+    display: flex;
+    justify-content: center;
+}
+
+#aboutUsSection .topContainer .leftSide,
+#aboutUsSection .topContainer .rightSide {
+    width: 50%;
+    height: 100%;
+}
+
+#aboutUsSection .topContainer .rightSide .imgContainer {
+    position: relative;
+    float: right;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#aboutUsSection .topContainer .rightSide .imgContainer .firstImgAboutUs {
+    height: 400px;
+    border-radius: 20px;
+}
+
+#aboutUsSection .topContainer .rightSide .imgContainer .secondImgAboutUs {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    float: left;
+    border-radius: 20px;
+}
+
+#aboutUsSection .topContainer .leftSide .summaryTitle{
+    padding-bottom: 40px;
+}
+#aboutUsSection .topContainer .leftSide .summaryTitle .subTitle {
+    font-family: var(--font-Rancho);
+    font-size: 34px;
+    color: brown;
+}
+
+#aboutUsSection .topContainer .leftSide p {
+    max-width: 450px;
+    color: var(--font-color-span);
+    font-family: 'Raleway', sans-serif;
+    letter-spacing: 1px;
+    font-size: 18px;
+}
+
+#aboutUsSection .topContainer .leftSide .exampleContainer .divContainer:first-child{
+    padding-bottom: 20px;
+}
+
+#testimonialSection{
+    height: 100vh;
+    background-color: #eceae3;
+    padding: 100px 10% 80px 10%;
+}
+#testimonialSection .containerTestimonial{
+    position: relative;
+}
+#testimonialSection .containerTestimonial .slideControls{
+    position: absolute;
+    width: 100%;
+    top: 47%;
+    left: 0;
+    z-index: 10; 
+}
+#testimonialSection .containerTestimonial .slideControls i{
+    font-size:50px;
+}
+#testimonialSection .containerTestimonial .slideControls .slidePrev{
+    left:0;
+    position:absolute;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    border: 2px solid #000;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+}
+#testimonialSection .containerTestimonial .slideControls .slideNext{
+    right:0;
+    position: absolute;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    border: 2px solid #000;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+}
+#testimonialSection #testimonialSlider .testimonial{
+    height: 350px;
+    width: 350px;
+    padding:20px 10% 0 10%;
+    border-radius: 20px;
+    background-color: white;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+#testimonialSection #testimonialSlider .liTestimonial{
+    display: flex;
+    justify-content: center;
+}
+
+#testimonialSection #testimonialSlider .testimonial .photo{
+    width: 100px;
+    height: 100px;
+    border: 5px solid #eceae3;
+    border-radius: 50%;
+    overflow: hidden;
+    
+}
+#testimonialSection #testimonialSlider .testimonial .photo img{
+    width: 100%;
+    height: 100%;
+}
+#testimonialSection #testimonialSlider .testimonial .review{
+    padding-top: 20px;
+}

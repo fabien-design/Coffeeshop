@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %} 
+{% block title %}Coffeera{% endblock %}
+{% block stylesheets %}
+<link
+  type="text/css"
+  rel="stylesheet"
+  href="{{ asset('resources/css/lightslider.css') }}"
+/>
+
+<link rel="stylesheet" href="{{ asset('resources/css/base.css') }}" />
+<link rel="stylesheet" href="{{ asset('resources/css/admin/admin.css') }}" />
+{% endblock %}
+
+
+{% block headerBody %}
+{% include 'admin/includes/sideBar.html.twig' %}
+{% endblock %}
+{% block body %}
+
+{% include 'Component/Card/_delete_modal.html.twig' with{ 
+    'title' : "Delete product",
+    'sentence'  : "Do you really want to delete these records? This process cannot be undone.",
+    'path_delete'  : "", 
+} only %}   
+
+<main>  
+    <div class="btnAddDiv"><a href="{{path('admin_product_create')}}" class="btnAdd">Add</a></div>
+    <table>
+    <caption>Coffee List</caption>
+    <thead>
+        <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Country</th>
+        <th scope="col">Price</th>
+        <th scope="col">Note</th>
+        <th scope="col">Category</th>
+        <th scope="col">Brand</th>
+        <th scope="col">Family</th>
+        <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% set i = 0 %}
+        {% for coffee in listCoffee %}
+            {% if i is same as(0) %}
+                <tr>
+                    <td data-label="Name">{{coffee.getName}}</td>
+                    <td data-label="Country">{{coffee.getCountry}}</td>
+                    <td data-label="Price">{{coffee.getPrice}}</td>
+                    <td data-label="Note">{{coffee.getNote}}</td>
+                    <td data-label="Category">{{coffee.category.name}}</td>
+                    <td data-label="Brand">{{coffee.brand.name}}</td>
+                    <td data-label="Family">{{coffee.family.name}}</td>
+                    <td data-label="Action" class="tdAction">
+                        <div class="divBtnAction">
+                            <a href="{{path('admin_product_edit', {'id': coffee.getId})}}" class="btnEdit">Edit</a>
+                            <button data-path="{{path('admin_product_delete', {'id': coffee.getId})}}" class="btnDelete">Delete</button>
+                        </div>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td scope="row" data-label="Name">{{coffee.getName}}</td>
+                    <td data-label="Country">{{coffee.getCountry}}</td>
+                    <td data-label="Price">{{coffee.getPrice}}</td>
+                    <td data-label="Note">{{coffee.getNote}}</td>
+                    <td data-label="Category">{{coffee.category.name}}</td>
+                    <td data-label="Brand">{{coffee.brand.name}}</td>
+                    <td data-label="Family">{{coffee.family.name}}</td>
+                    <td data-label="Action" class="tdAction">
+                        <div class="divBtnAction">
+                            <a href="{{path('admin_product_edit', {'id': coffee.getId})}}" class="btnEdit">Edit</a>
+                            <button data-path="{{path('admin_product_delete', {'id': coffee.getId})}}" class="btnDelete">Delete</button>
+                        </div>
+                    </td>
+                </tr>
+
+            {% endif %}
+            {% set i = i + 1 %}
+        {% endfor %}
+    
+    </tbody>
+    </table>
+</main>
+
+<script>
+    $(document).ready(function () {
+        // Gestionnaire de clic pour les boutons de suppression
+        $('.btnDelete').on('click', function () {
+            // Récupérer les données du bouton cliqué
+            var pathDelete = $(this).data('path');
+            $('#pathToDelete').attr('href', pathDelete);
+            $('#myModal').addClass('show');
+        });
+    });
+</script>
+
+{% endblock %}
+
+{% block footer %}
+    
+{% endblock %}
+{% block contactForm %}
+{% endblock %}

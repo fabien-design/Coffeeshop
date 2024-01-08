@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %} 
+{% block title %}Coffeera{% endblock %}
+{% block stylesheets %}
+<link
+  type="text/css"
+  rel="stylesheet"
+  href="{{ asset('resources/css/lightslider.css') }}"
+/>
+
+<link rel="stylesheet" href="{{ asset('resources/css/base.css') }}" />
+<link rel="stylesheet" href="{{ asset('resources/css/admin/admin.css') }}" />
+{% endblock %}
+
+
+{% block headerBody %}
+{% include 'admin/includes/sideBar.html.twig' %}
+{% endblock %}
+{% block body %}
+<main>
+    <table>
+    <caption>Contacts List</caption>
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Message</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% set i = 0 %}
+        {% for contact in listContacts %}
+
+            {% if i is same as(0) %}
+                <tr>
+                    <td data-label="Name">{{ contact.firstName | join(' ') }} {{ contact.lastName }}</td>
+                    <td data-label="Email">{{contact.getEmail}}</td> 
+                    <td data-label="Phone Number">{{contact.getPhone}}</td> 
+                    <td data-label="Message">{{contact.getMessage}}</td> 
+                </tr>
+            {% else %}
+                <tr>
+                    <td scope="row" data-label="Name">{{ contact.firstName | join(' ') }} {{ contact.lastName }}</td>
+                    <td data-label="Email">{{contact.getEmail}}</td> 
+                    <td data-label="Phone Number">{{contact.getPhone}}</td> 
+                    <td data-label="Message">{{contact.getMessage}}</td> 
+                </tr>
+            {% endif %}
+            {% set i = i + 1 %}
+        {% endfor %}
+    
+    </tbody>
+    </table>
+</main>
+{% endblock %}
+
+{% block footer %}
+    
+{% endblock %}
+{% block contactForm %}
+{% endblock %}

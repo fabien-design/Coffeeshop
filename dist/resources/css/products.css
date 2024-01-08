@@ -1,0 +1,99 @@
+#allProducts {
+    min-height: 100vh;
+    background-color: #eceae3;
+    padding: 100px 10% 80px 10%;
+}
+
+#allProducts .titleAndFilter {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#allProducts .titleAndFilter .titleSection {
+    font-family: var(--font-Rancho);
+    font-size: 3rem;
+    color: brown;
+}
+
+#allProducts .titleAndFilter .filterContainer {
+    position: relative;
+}
+
+#allProducts .titleAndFilter #filterButton {
+    cursor: pointer;
+    background-color: brown;
+    padding: 5px 10px;
+    color: white;
+    border-radius: 5px;
+    border: 2px solid brown;
+    font-family: var(--font-Rancho);
+    font-size: 1.5rem;
+    transition: all ease-in 0.4s;
+}
+
+#allProducts .titleAndFilter #filterButton:hover {
+    transition: all ease-in 0.4s;
+    background-color: white;
+    color: brown;
+    border: 2px solid brown;
+}
+
+#allProducts .titleAndFilter #filterButton.open {
+    transition: all ease-in 0.4s;
+    background-color: white;
+    color: brown;
+    border: 2px solid brown;
+}
+
+#allProducts .titleAndFilter .filterContainer .filter-popup {
+    position: absolute;
+    top: 60px;
+    min-width: 230px;
+    background-color: #111;
+    color: white;
+    right: 0;
+    padding: 20px;
+    border-radius: 5px;
+    z-index: 50;
+}
+#allProducts .titleAndFilter .filterContainer .filter-popup form{
+    display: grid;
+    
+}
+#allProducts .titleAndFilter .filterContainer .filter-popup form label{
+    display: flex;
+    justify-content: space-between;
+}
+
+#allProducts .titleAndFilter .filterContainer .filter-popup .arrowFilterOpen {
+    width: 20px;
+    height: 20px;
+    background-color: #111;
+    transform: rotate(-45deg);
+    position: absolute;
+    top: -10px;
+    right: 15px;
+}
+
+#allProducts .productsContainer {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 40px 0;
+}
+
+
+.paginationContainer .pagination {
+    padding: 10px 15px;
+    background-color: white;
+    color: brown;
+    cursor: pointer;
+}
+
+.paginationContainer .pagination.active {
+    background-color: brown;
+    color: white;
+}
